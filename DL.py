@@ -15,7 +15,7 @@ class DataLoader:
         self.ori_all_data = np.array(self.ori_all_data[len(self.ori_all_data) - self.dataset_size:])[:, 1:]
 
     def save_as_csv(self, filename, data="ori"):
-        if (data == "ori"):
+        if data == "ori":
             np.savetxt(filename, self.ori_all_data, delimiter=',', fmt="%.10f")
         elif data == "filter":
             np.savetxt(filename, self.load_filtered_data(), delimiter=',', fmt="%.10f")
@@ -43,13 +43,13 @@ class DataLoader:
         return norm_data
 
     def load_min_gap(self):
-        min_gap=[]
-        transposed_data=self.ori_all_data.transpose()
+        min_gap = []
+        transposed_data = self.ori_all_data.transpose()
         for arr in transposed_data:
-            arr_min=arr.min(initial=None)
-            arr_max=arr.max(initial=None)
-            arr_gap=arr_max-arr_min
-            min_gap.append([arr_min,arr_gap])
+            arr_min = arr.min(initial=None)
+            arr_max = arr.max(initial=None)
+            arr_gap = arr_max - arr_min
+            min_gap.append([arr_min, arr_gap])
         return np.array(min_gap)
 
     def add_vec(self, vec):
@@ -61,5 +61,5 @@ if __name__ == "__main__":
     dataloader.add_vec(np.ones((158,)))
     x = dataloader.load_filtered_data()
     y = dataloader.load_norm_data()
-    print(x.shape,y.shape)
+    print(x.shape, y.shape)
     print(x[-1])

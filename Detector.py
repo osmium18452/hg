@@ -24,7 +24,7 @@ class Detector:
     def detect(self, vec, alpha=1.5):
         result = self.cal_lof(vec)
         if result > alpha:
-            print("abnormal detected.")
+            print("[abnormal detected] [LOF score: ",result,"]",vec)
         else:
             self.dataloader.add_vec(vec)
 
