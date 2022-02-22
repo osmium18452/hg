@@ -2,17 +2,20 @@ import numpy as np
 
 
 class DataLoader:
-    def __init__(self, filename, dataset_size=None):
+    def __init__(self, filename, dataset_size=None, filetype="csv"):
         self.ori_all_data = []
-        with open(filename, "r") as f:
-            for line in f.readlines():
-                if not line[0] == "t":
-                    self.ori_all_data.append(list(map(float, line.strip().split(","))))
-        if dataset_size is None:
-            self.dataset_size = len(self.ori_all_data)
+        if filetype == "csv":
+            with open(filename, "r") as f:
+                for line in f.readlines():
+                    if not line[0] == "t":
+                        self.ori_all_data.append(list(map(float, line.strip().split(","))))
+            if dataset_size is None:
+                self.dataset_size = len(self.ori_all_data)
+            else:
+                self.dataset_size = dataset_size
+            self.ori_all_data = np.array(self.ori_all_data[len(self.ori_all_data) - self.dataset_size:])[:, 1:]
         else:
-            self.dataset_size = dataset_size
-        self.ori_all_data = np.array(self.ori_all_data[len(self.ori_all_data) - self.dataset_size:])[:, 1:]
+            self.ori_all_data = np.load(filename)
 
     def save_as_csv(self, filename, data="ori"):
         if data == "ori":

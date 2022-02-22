@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="844a4be5-66f0-4b1d-835b-7a793f08e546" name="10.176.26.83">
+        <fileTransfer rootFolder="/remote-home/liuwenbo/hg-lof" accessType="SFTP" host="10.176.26.83" port="20044" sshConfigId="1cbc50ea-a10d-4caf-85f1-91485ae9ada8" sshConfig="root@10.176.26.83:20044 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
