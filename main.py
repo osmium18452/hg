@@ -4,7 +4,7 @@ import argparse
 from tqdm import tqdm
 import os
 
-test_data = np.load("data/testdata.npy")
+test_data = np.load("data/testdata.npy")[:10000]
 detector = Detector("data/original/2020-03-01.csv")
 cnt = 0
 with tqdm(total=test_data.shape[0], ascii=True) as pbar:
@@ -14,8 +14,8 @@ with tqdm(total=test_data.shape[0], ascii=True) as pbar:
             pbar.update()
             result = detector.cal_lof(vec)
             detector.dataloader.add_vec(vec)
+            print("time stamp: %9d, result:%.5f" % (cnt, result),file=f)
             if result > 1.5:
-                print("time stamp: %9d, result:%.5f" % (cnt, result),file=f)
                 pbar.set_postfix_str("%.5f" % result)
 exit()
 
