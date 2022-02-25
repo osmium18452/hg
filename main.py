@@ -4,7 +4,7 @@ import argparse
 from tqdm import tqdm
 import os
 
-test_data = np.load("data/testdata.npy")[:10000]
+test_data = np.load("data/testdata.npy")
 detector = Detector("data/original/2020-03-01.csv")
 cnt = 0
 with tqdm(total=test_data.shape[0], ascii=True) as pbar:
