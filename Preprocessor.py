@@ -43,6 +43,6 @@ if __name__ == "__main__":
                 pbar.update()
     all_data=np.array(all_data).transpose()[1:].transpose()
     test_data=all_data[1440:]
-    np.save("data/testdata.npy",test_data)
-    np.save("data/all_data.npy",all_data)
+    # np.save("data/testdata.npy",test_data)
+    # np.save("data/all_data.npy",all_data)
     print(all_data.shape,test_data.shape)

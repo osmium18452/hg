@@ -10,15 +10,18 @@ class Detector:
 
     def cal_lof(self, vec):
         norm_data = self.dataloader.load_norm_data()
+        # print(np.shape(norm_data))
         min_gap = self.dataloader.load_min_gap()
         norm_vec = []
         for i in range(158):
             if min_gap[i][1] != 0:
                 norm_vec.append((vec[i] - min_gap[i][0]) / min_gap[i][1])
         norm_vec = np.array([norm_vec])
+        # print(np.shape(norm_vec))
         lof_data = np.append(norm_data, norm_vec, axis=0)
         clf = LocalOutlierFactor()
         clf.fit_predict(lof_data)
+        # print(type(clf.negative_outlier_factor_))
         return -clf.negative_outlier_factor_[-1]
 
     def detect(self, vec, alpha=1.5):
@@ -56,5 +59,5 @@ if __name__ == "__main__":
                 859.3872680664, 859.4057006836, 859.6556396484, 859.9738769531, 859.6556396484, 472.6930541992,
                 859.3872680664, 859.4057006836, 859.6556396484, 859.9738769531, 371.9176940918, 369.2017211914]
     print(detector.cal_lof(test_vec))
-    detector.detect(np.ones((158,)))
-    detector.detect(test_vec)
+    # detector.detect(np.ones((158,)))
+    # detector.detect(test_vec)
